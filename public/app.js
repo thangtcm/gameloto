@@ -1,3 +1,5 @@
+import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
+
 var result = [];
 var flgStop = false;
 var numberLeft = 90;
