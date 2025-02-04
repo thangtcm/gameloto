@@ -4,6 +4,7 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 const session = require("express-session");
 const { v4: uuidv4 } = require('uuid');
+const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
@@ -14,7 +15,7 @@ const io = new Server(server, {
 });
 
 app.use(cors());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'secret-key',
     resave: false,
@@ -335,6 +336,7 @@ function drawNumber() {
     }
 }
 
-server.listen(3000, () => {
-    console.log("Server đang chạy trên cổng 3000");
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
