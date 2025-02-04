@@ -1,13 +1,5 @@
 import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
 
-var result = [];
-var flgStop = false;
-var numberLeft = 90;
-
-function IsNumeric(n) {
-    return !isNaN(n);
-}
-
 $(function() {
     const socket = io({
         query: {
@@ -164,52 +156,3 @@ function inArray(needle, haystack) {
     return false;
 }
 
-function randomNum(numLow, numHigh) {
-    var adjustedHigh = parseFloat(numHigh) - parseFloat(numLow) + 1;
-    var numRand = Math.floor(Math.random() * adjustedHigh) + parseFloat(numLow);
-
-    return numRand;
-}
-
-function countDown() {
-    if (this.flgStop == false) {
-        var timeleft = $("#timeleft").val();
-        var downloadTimer = setInterval(function() {
-            if (timeleft <= 0 && this.flgStop == false) {
-                clearInterval(downloadTimer);
-                // $(#getit).click();
-                document.getElementById("getit").click();
-            } else if (this.flgStop == true) {
-                document.getElementById("countdown").innerHTML = "Đã có người kinh";
-            } else {
-                document.getElementById("countdown").innerHTML = timeleft + " giây nữa...";
-            }
-            timeleft -= 1;
-        }, 1000);
-    } else {
-        document.getElementById("countdown").innerHTML = "Đã có người kinh";
-    }
-}
-
-function stopCountDown() {
-    this.flgStop = true;
-    $("#getit").removeAttr('hidden');
-}
-
-function clearScreen() {
-    location.reload();
-}
-
-function checkNumber() {
-    var number = $("#findNumber").val();
-    // $("#textCheckNumber").attr("hidden", true);
-    // $("#textCheckNumberWrong").attr("hidden", true);
-
-    if (inArray(number, this.result)) {
-        $(".alert-success").removeAttr('hidden');
-        document.getElementById("textCheckNumber").innerHTML = "Có số " + number;
-    } else {
-        $(".alert-danger").removeAttr('hidden');
-        document.getElementById("textCheckNumberWrong").innerHTML = "Không Có Số " + number;
-    }
-}
