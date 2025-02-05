@@ -16,7 +16,7 @@ jobs:
     - name: Use Node.js 22.x
       uses: actions/setup-node@v2
       with:
-        node-version: 16.x
+        node-version: 22.x
     - run: npm install
     - run: npm test
     - run: pm2 restart app-name
